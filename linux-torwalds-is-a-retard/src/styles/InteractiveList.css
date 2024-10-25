@@ -1,0 +1,55 @@
+.list__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.list__control-panel {
+    display: flex;
+    padding: 24px;
+    gap: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.control-panel__item--clearlist {
+    margin-left: auto;
+}
+
+.list__body {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list__item {
+    display: flex;
+    align-items: center;
+    padding: 10px; 
+    border-bottom: 1px solid #ddd;
+}
+
+.list__item-checkbox {
+    margin-right: 10px;
+}
+
+.list__item-input {
+    flex: 1; 
+    padding: 5px;
+}
+
+.list__item-input:focus {
+    outline: none;
+}
+
+.list__item-confirm {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.list__item-confirm svg {
+    fill: #4CAF50;
+}
+
+.list__item-input--error {
+    border: 1px solid red;
+}
