@@ -25,6 +25,10 @@
     align-items: center;
     padding: 10px; 
     border-bottom: 1px solid #ddd;
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Стандарт */
 }
 
 .list__item-checkbox {
@@ -33,6 +37,7 @@
 
 .list__item-input {
     flex: 1; 
+    margin-right: 8px;
     padding: 5px;
 }
 
@@ -40,7 +45,15 @@
     outline: none;
 }
 
-.list__item-confirm {
+.list__item-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.list__item-confirm,
+.list__item-cancel,
+.list__item-decline {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -52,4 +65,17 @@
 
 .list__item-input--error {
     border: 1px solid red;
+}
+
+.list__item--completed {
+    background-color: #f0f0f0;
+    color: #999;
+}
+
+.list__item--completed span {
+    text-decoration: line-through;
+}
+
+.list__item--completed .list__item-complete {
+    display: none;
 }
