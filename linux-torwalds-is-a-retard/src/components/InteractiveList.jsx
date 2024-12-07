@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import Modal from "./Modal";
+import SearchInput from "./SearchInput";
+import useDebounce from "../hooks/debounce";
 import '../styles/InteractiveList.css';
 
 function InteractiveList() {
@@ -12,6 +14,13 @@ function InteractiveList() {
         description: "",
     });
     const [inputError, setInputError] = useState(false);
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const debouncedSearchTerm = useDebounce(searchQuery, 300);
+    const filteredItems = useMemo(() => items.filter((item) =>
+        item.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    ), [items, debouncedSearchTerm]);
+    
     const inputRef = useRef(null);
     
     const [isEditingItem, setIsEditingItem] = useState(false);
@@ -248,6 +257,9 @@ function InteractiveList() {
                 >
                     Закрыть выбранные
                 </button>
+                <SearchInput
+                    onSearch={setSearchQuery}
+                />
                 <button
                     className="control-panel__item control-panel__item--clearlist"
                     type="button"
@@ -308,7 +320,7 @@ function InteractiveList() {
             </Modal>
 
             <ul className="list__body">
-                {items.map((item) => (
+                {filteredItems.map((item) => (
                     <li
                         className={`list__item ${
                             completedItems.includes(item.id) ? "list__item--completed" : ""
